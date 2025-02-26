@@ -13,9 +13,9 @@ const Login = () => {
     setError(""); 
 
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", { username, password }, { withCredentials: true });
+      const res = await axios.post("http://localhost:5001/api/auth/login", { username, password }, { withCredentials: true });
       alert(res.data.message);
-      window.location.href = "/LandingPage"; // Redirect after login
+      window.location.href = "/"; // Redirect after login
     } catch (err) {
       setError(err.response?.data?.error || "Login failed");
     }
