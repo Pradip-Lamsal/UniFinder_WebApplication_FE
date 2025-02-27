@@ -1,12 +1,19 @@
+import { useRef } from "react";
 import { FaChartBar, FaSearch, FaUniversity } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { assets } from "../../assets/assets";
-import NewAdditions from '../../compontents/NewAdditions';
-;
 
 const LandingPage = () => {
+    const faqSectionRef = useRef(null);
+
+    const handleScroll = () => {
+        faqSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+    };
+
     return (
-        <div className="min-h-screen bg-gray-200 relative flex flex-col items-center">
+        <div className="relative min-h-screen bg-gradient-to-b from-gray-100 via-gray-200 to-white flex flex-col items-center">
+
+            {/* Background Image */}
             <div className="absolute inset-0 bg-[url('/path-to-pattern.png')] opacity-10"></div>
             <img 
                 src={assets.backgroundImage} 
@@ -15,17 +22,21 @@ const LandingPage = () => {
                 style={{ objectPosition: 'center' }} 
             />
 
-            <main className="relative z-10 text-center mt-32 flex items-center justify-center w-full h-screen">
-                <div className="flex flex-col items-center justify-center px-6 sm:px-12 py-12 sm:py-20 text-center">
-                    <h1 className="text-5xl sm:text-6xl font-extrabold text-gray-800 mb-6">
+            {/* Hero Section */}
+            <main className="relative z-10 text-center mt-32 flex items-center justify-center w-full h-screen px-6 sm:px-12 py-12 sm:py-20 text-center">
+                <div className="flex flex-col items-center justify-center text-center max-w-5xl mx-auto">
+                    <h1 className="text-5xl sm:text-6xl font-extrabold text-gray-800 mb-6 transition-all transform hover:scale-105">
                         Find Your Perfect University
                     </h1>
-                    <p className="text-xl sm:text-2xl text-gray-600 mb-8 max-w-4xl">
+                    <p className="text-xl sm:text-2xl text-gray-600 mb-8 max-w-4xl transition-all transform hover:scale-105">
                         Connect with top universities and expert consultancies to make your educational journey a success.
                     </p>
-                    <Link to="/smart-search" className="bg-gray-600 text-white px-8 py-4 rounded-lg text-xl sm:text-2xl hover:bg-gray-700 transition">
+                    <button 
+                        onClick={handleScroll} 
+                        className="bg-blue-600 text-white px-8 py-4 rounded-lg text-xl sm:text-2xl hover:bg-blue-700 transition"
+                    >
                         Start Your Journey
-                    </Link>
+                    </button>
                 </div>
             </main>
 
@@ -34,11 +45,11 @@ const LandingPage = () => {
                 <h2 className="text-center text-xl sm:text-2xl font-extrabold text-gray-800 mb-6">
                     Why Choose UniFinder?
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-8">
                     {/* Smart Search */}
                     <Link 
                         to="/smart-search"
-                        className="group block bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-2xl transition transform hover:-translate-y-1"
+                        className="group block bg-white p-8 rounded-lg shadow-xl text-center hover:shadow-2xl transition transform hover:-translate-y-1 hover:scale-105"
                     >
                         <div className="mb-6 text-gray-500 flex justify-center group-hover:text-gray-800 transition">
                             <FaSearch size={56} />
@@ -50,7 +61,7 @@ const LandingPage = () => {
                     {/* Top Universities */}
                     <Link 
                         to="/top-universities"
-                        className="group block bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-2xl transition transform hover:-translate-y-1"
+                        className="group block bg-white p-8 rounded-lg shadow-xl text-center hover:shadow-2xl transition transform hover:-translate-y-1 hover:scale-105"
                     >
                         <div className="mb-6 text-gray-500 flex justify-center group-hover:text-gray-800 transition">
                             <FaUniversity size={56} />
@@ -62,7 +73,7 @@ const LandingPage = () => {
                     {/* Comprehensive Insights */}
                     <Link 
                         to="/comprehensive-insights"
-                        className="group block bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-2xl transition transform hover:-translate-y-1"
+                        className="group block bg-white p-8 rounded-lg shadow-xl text-center hover:shadow-2xl transition transform hover:-translate-y-1 hover:scale-105"
                     >
                         <div className="mb-6 text-gray-500 flex justify-center group-hover:text-gray-800 transition">
                             <FaChartBar size={56} />
@@ -73,11 +84,8 @@ const LandingPage = () => {
                 </div>
             </div>
 
-            {/* New Additions Section */}
-            <NewAdditions />
-
             {/* Frequently Asked Questions Section */}
-            <section className="bg-gray-100 w-full py-20 flex flex-col items-center">
+            <section ref={faqSectionRef} className="bg-gray-100 w-full py-20 flex flex-col items-center">
                 <div className="max-w-5xl w-full px-6">
                     <h2 className="text-2xl sm:text-3xl font-extrabold text-center text-gray-900 mb-8">
                         Frequently Asked Questions
