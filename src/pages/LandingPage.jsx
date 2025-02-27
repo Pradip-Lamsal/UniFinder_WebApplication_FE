@@ -1,11 +1,9 @@
 import { FaChartBar, FaSearch, FaUniversity } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { assets } from "../assets/assets";
-import Footer from '../compontents/Footer';
 import FeaturedUniversities from '../compontents/UniCard';
 
 const LandingPage = () => {
-    const navigate = useNavigate(); // Hook to navigate between pages
 
     return (
         <div className="min-h-screen bg-gray-200 relative flex flex-col items-center justify-center">
@@ -46,42 +44,43 @@ const LandingPage = () => {
                 <h2 className="text-center text-xl sm:text-2xl font-extrabold text-gray-800 mb-6">
                     Why Choose UniFinder?
                 </h2>
-                <div className="flex justify-between items-center gap-8 sm:gap-12">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-8">
                     {/* Smart Search */}
-                    <div 
-                        className="bg-white p-8 rounded-lg shadow-lg text-center cursor-pointer hover:shadow-xl transition"
-                        onClick={() => navigate("/smart-search")}
-                    >
-                        <div className="mb-6 text-gray-500 flex justify-center">
-                            <FaSearch size={56} />
-                        </div>
-                        <h3 className="text-lg font-semibold mb-3">Smart Search</h3>
-                        <p className="text-gray-600">Find universities that match your preferences using our advanced filters.</p>
-                    </div>
+                                        <Link 
+                                        to="/smart-search"
+                                        className="group block bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-2xl transition-shadow transform hover:-translate-y-1"
+                                    >
+                                        <div className="mb-6 text-gray-500 flex justify-center group-hover:text-gray-800 transition-colors">
+                                            <FaSearch size={56} />
+                                        </div>
+                                        <h3 className="text-lg font-semibold mb-3">Smart Search</h3>
+                                        <p className="text-gray-600">Find universities that match your preferences using our advanced filters.</p>
+                                    </Link>
+                
                     
-                    {/* Top Universities */}
-                    <div 
-                        className="bg-white p-8 rounded-lg shadow-lg text-center cursor-pointer hover:shadow-xl transition"
-                        onClick={() => navigate("/top-universities")}
-                    >
-                        <div className="mb-6 text-gray-500 flex justify-center">
-                            <FaUniversity size={56} />
-                        </div>
-                        <h3 className="text-lg font-semibold mb-3">Top Universities</h3>
-                        <p className="text-gray-600">Access detailed information about leading institutions worldwide.</p>
-                    </div>
-                    
+                                      <Link 
+                                        to="/top-universities"
+                                        className="group block bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-2xl transition-shadow transform hover:-translate-y-1"
+                                    >
+                                        <div className="mb-6 text-gray-500 flex justify-center group-hover:text-gray-800 transition-colors">
+                                            <FaUniversity size={56} />
+                                        </div>
+                                        <h3 className="text-lg font-semibold mb-3">Top Universities</h3>
+                                        <p className="text-gray-600">Access detailed information about leading institutions worldwide.</p>
+                                    </Link>
+                                    
                     {/* Comprehensive Insights */}
-                    <div 
-                        className="bg-white p-8 rounded-lg shadow-lg text-center cursor-pointer hover:shadow-xl transition"
-                        onClick={() => navigate("/comprehensive-insights")}
-                    >
-                        <div className="mb-6 text-gray-500 flex justify-center">
-                            <FaChartBar size={56} />
-                        </div>
-                        <h3 className="text-lg font-semibold mb-3">Comprehensive Insights</h3>
-                        <p className="text-gray-600">Get rankings, reviews, and admission criteria to make informed decisions.</p>
-                    </div>
+                        {/* Comprehensive Insights */}
+                        <Link 
+                                            to="/comprehensive-insights"
+                                            className="group block bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-2xl transition-shadow transform hover:-translate-y-1"
+                                        >
+                                            <div className="mb-6 text-gray-500 flex justify-center group-hover:text-gray-800 transition-colors">
+                                                <FaChartBar size={56} />
+                                            </div>
+                                            <h3 className="text-lg font-semibold mb-3">Comprehensive Insights</h3>
+                                            <p className="text-gray-600">Get rankings, reviews, and admission criteria to make informed decisions.</p>
+                                        </Link>
                 </div>
             </div>
 
@@ -126,8 +125,6 @@ const LandingPage = () => {
                     </div>
                 </div>
             </section>
-
-            <Footer/>
         </div>
     );
 };
