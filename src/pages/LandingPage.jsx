@@ -1,9 +1,12 @@
 import { FaChartBar, FaSearch, FaUniversity } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 import { assets } from "../assets/assets";
 import Footer from '../compontents/Footer';
 import FeaturedUniversities from '../compontents/UniCard';
 
-const HomePage = () => {
+const LandingPage = () => {
+    const navigate = useNavigate(); // Hook to navigate between pages
+
     return (
         <div className="min-h-screen bg-gray-200 relative flex flex-col items-center justify-center">
             <div className="absolute inset-0 bg-[url('/path-to-pattern.png')] opacity-10"></div>
@@ -19,8 +22,8 @@ const HomePage = () => {
                 <div className="container mx-auto px-8 flex justify-between items-center">
                     <h1 className="text-3xl font-extrabold text-gray-800">UniFinder</h1>
                     <div className="space-x-6">
-                        <a href="/Login" className="text-gray-700 text-lg px-6 py-3 hover:bg-gray-300 rounded-md">Login</a>
-                        <a href="/Register" className="bg-gray-500 text-white px-6 py-3 rounded-md text-lg hover:bg-gray-600">Get Started</a>
+                        <a href="/login" className="text-gray-700 text-lg px-6 py-3 hover:bg-gray-300 rounded-md">Login</a>
+                        <a href="/register" className="bg-gray-500 text-white px-6 py-3 rounded-md text-lg hover:bg-gray-600">Get Started</a>
                     </div>
                 </div>
             </header>
@@ -40,9 +43,15 @@ const HomePage = () => {
 
             {/* Why Choose UniFinder Section */}
             <div className="bg-gray-100 py-12 w-full mt-20">
-                <h2 className="text-center text-xl sm:text-2xl font-extrabold text-gray-800 mb-6">Why Choose UniFinder?</h2>
+                <h2 className="text-center text-xl sm:text-2xl font-extrabold text-gray-800 mb-6">
+                    Why Choose UniFinder?
+                </h2>
                 <div className="flex justify-between items-center gap-8 sm:gap-12">
-                    <div className="bg-white p-8 rounded-lg shadow-lg text-center">
+                    {/* Smart Search */}
+                    <div 
+                        className="bg-white p-8 rounded-lg shadow-lg text-center cursor-pointer hover:shadow-xl transition"
+                        onClick={() => navigate("/smart-search")}
+                    >
                         <div className="mb-6 text-gray-500 flex justify-center">
                             <FaSearch size={56} />
                         </div>
@@ -50,7 +59,11 @@ const HomePage = () => {
                         <p className="text-gray-600">Find universities that match your preferences using our advanced filters.</p>
                     </div>
                     
-                    <div className="bg-white p-8 rounded-lg shadow-lg text-center">
+                    {/* Top Universities */}
+                    <div 
+                        className="bg-white p-8 rounded-lg shadow-lg text-center cursor-pointer hover:shadow-xl transition"
+                        onClick={() => navigate("/top-universities")}
+                    >
                         <div className="mb-6 text-gray-500 flex justify-center">
                             <FaUniversity size={56} />
                         </div>
@@ -58,7 +71,11 @@ const HomePage = () => {
                         <p className="text-gray-600">Access detailed information about leading institutions worldwide.</p>
                     </div>
                     
-                    <div className="bg-white p-8 rounded-lg shadow-lg text-center">
+                    {/* Comprehensive Insights */}
+                    <div 
+                        className="bg-white p-8 rounded-lg shadow-lg text-center cursor-pointer hover:shadow-xl transition"
+                        onClick={() => navigate("/comprehensive-insights")}
+                    >
                         <div className="mb-6 text-gray-500 flex justify-center">
                             <FaChartBar size={56} />
                         </div>
@@ -71,7 +88,7 @@ const HomePage = () => {
             {/* Featured Universities Section */}
             <FeaturedUniversities />
 
-            {/* Frequently Asked Questions Section (Now with 3 FAQs) */}
+            {/* Frequently Asked Questions Section */}
             <section className="bg-gray-100 w-full py-20 flex flex-col items-center">
                 <div className="max-w-5xl w-full px-6">
                     <h2 className="text-2xl sm:text-3xl font-extrabold text-center text-gray-900 mb-8">
@@ -98,7 +115,6 @@ const HomePage = () => {
                             </p>
                         </div>
 
-                        {/* New FAQ Item */}
                         <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
                             <h3 className="text-lg font-semibold text-gray-900">
                                 Is UniFinder free to use?
@@ -110,11 +126,10 @@ const HomePage = () => {
                     </div>
                 </div>
             </section>
+
             <Footer/>
         </div>
-
-    
     );
 };
 
-export default HomePage;
+export default LandingPage;
