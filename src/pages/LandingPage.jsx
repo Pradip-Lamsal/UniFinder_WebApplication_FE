@@ -1,12 +1,11 @@
 import { FaChartBar, FaSearch, FaUniversity } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { assets } from "../assets/assets";
-import FeaturedUniversities from '../compontents/UniCard';
+import NewAdditions from '../compontents/NewAdditions';
 
 const LandingPage = () => {
-
     return (
-        <div className="min-h-screen bg-gray-200 relative flex flex-col items-center justify-center">
+        <div className="min-h-screen bg-gray-200 relative flex flex-col items-center">
             <div className="absolute inset-0 bg-[url('/path-to-pattern.png')] opacity-10"></div>
             <img 
                 src={assets.backgroundImage} 
@@ -15,27 +14,28 @@ const LandingPage = () => {
                 style={{ objectPosition: 'center' }} 
             />
 
-            {/* Header */}
-            <header className="fixed top-0 left-0 right-0 bg-gray-200/80 backdrop-blur-sm z-50 border-b py-8">
+            {/* Hero Section */}
+            <header className="fixed top-0 left-0 right-0 bg-transparent backdrop-blur-sm z-50 py-6">
                 <div className="container mx-auto px-8 flex justify-between items-center">
-                    <h1 className="text-3xl font-extrabold text-gray-800">UniFinder</h1>
+                    <h1 className="text-3xl font-extrabold text-white">UniFinder</h1>
                     <div className="space-x-6">
-                        <a href="/login" className="text-gray-700 text-lg px-6 py-3 hover:bg-gray-300 rounded-md">Login</a>
-                        <a href="/register" className="bg-gray-500 text-white px-6 py-3 rounded-md text-lg hover:bg-gray-600">Get Started</a>
+                        <Link to="/login" className="text-white text-lg px-6 py-3 hover:bg-gray-300 hover:text-gray-800 rounded-md transition">Login</Link>
+                        <Link to="/register" className="bg-white text-gray-800 px-6 py-3 rounded-md text-lg hover:bg-gray-300 transition">Get Started</Link>
                     </div>
                 </div>
             </header>
 
             <main className="relative z-10 text-center mt-32 flex items-center justify-center w-full h-screen">
-                {/* Hero Section */}
                 <div className="flex flex-col items-center justify-center px-6 sm:px-12 py-12 sm:py-20 text-center">
-                    <h1 className="text-5xl sm:text-6xl font-extrabold text-gray-800 mb-6">Find Your Perfect University</h1>
+                    <h1 className="text-5xl sm:text-6xl font-extrabold text-gray-800 mb-6">
+                        Find Your Perfect University
+                    </h1>
                     <p className="text-xl sm:text-2xl text-gray-600 mb-8 max-w-4xl">
                         Connect with top universities and expert consultancies to make your educational journey a success.
                     </p>
-                    <button className="bg-gray-500 text-white px-8 py-4 rounded-lg text-xl sm:text-2xl">
+                    <Link to="/smart-search" className="bg-gray-600 text-white px-8 py-4 rounded-lg text-xl sm:text-2xl hover:bg-gray-700 transition">
                         Start Your Journey
-                    </button>
+                    </Link>
                 </div>
             </main>
 
@@ -46,46 +46,45 @@ const LandingPage = () => {
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-8">
                     {/* Smart Search */}
-                                        <Link 
-                                        to="/smart-search"
-                                        className="group block bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-2xl transition-shadow transform hover:-translate-y-1"
-                                    >
-                                        <div className="mb-6 text-gray-500 flex justify-center group-hover:text-gray-800 transition-colors">
-                                            <FaSearch size={56} />
-                                        </div>
-                                        <h3 className="text-lg font-semibold mb-3">Smart Search</h3>
-                                        <p className="text-gray-600">Find universities that match your preferences using our advanced filters.</p>
-                                    </Link>
-                
+                    <Link 
+                        to="/smart-search"
+                        className="group block bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-2xl transition transform hover:-translate-y-1"
+                    >
+                        <div className="mb-6 text-gray-500 flex justify-center group-hover:text-gray-800 transition">
+                            <FaSearch size={56} />
+                        </div>
+                        <h3 className="text-lg font-semibold mb-3">Smart Search</h3>
+                        <p className="text-gray-600">Find universities that match your preferences using our advanced filters.</p>
+                    </Link>
                     
-                                      <Link 
-                                        to="/top-universities"
-                                        className="group block bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-2xl transition-shadow transform hover:-translate-y-1"
-                                    >
-                                        <div className="mb-6 text-gray-500 flex justify-center group-hover:text-gray-800 transition-colors">
-                                            <FaUniversity size={56} />
-                                        </div>
-                                        <h3 className="text-lg font-semibold mb-3">Top Universities</h3>
-                                        <p className="text-gray-600">Access detailed information about leading institutions worldwide.</p>
-                                    </Link>
-                                    
+                    {/* Top Universities */}
+                    <Link 
+                        to="/top-universities"
+                        className="group block bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-2xl transition transform hover:-translate-y-1"
+                    >
+                        <div className="mb-6 text-gray-500 flex justify-center group-hover:text-gray-800 transition">
+                            <FaUniversity size={56} />
+                        </div>
+                        <h3 className="text-lg font-semibold mb-3">Top Universities</h3>
+                        <p className="text-gray-600">Access detailed information about leading institutions worldwide.</p>
+                    </Link>
+
                     {/* Comprehensive Insights */}
-                        {/* Comprehensive Insights */}
-                        <Link 
-                                            to="/comprehensive-insights"
-                                            className="group block bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-2xl transition-shadow transform hover:-translate-y-1"
-                                        >
-                                            <div className="mb-6 text-gray-500 flex justify-center group-hover:text-gray-800 transition-colors">
-                                                <FaChartBar size={56} />
-                                            </div>
-                                            <h3 className="text-lg font-semibold mb-3">Comprehensive Insights</h3>
-                                            <p className="text-gray-600">Get rankings, reviews, and admission criteria to make informed decisions.</p>
-                                        </Link>
+                    <Link 
+                        to="/comprehensive-insights"
+                        className="group block bg-white p-8 rounded-lg shadow-lg text-center hover:shadow-2xl transition transform hover:-translate-y-1"
+                    >
+                        <div className="mb-6 text-gray-500 flex justify-center group-hover:text-gray-800 transition">
+                            <FaChartBar size={56} />
+                        </div>
+                        <h3 className="text-lg font-semibold mb-3">Comprehensive Insights</h3>
+                        <p className="text-gray-600">Get rankings, reviews, and admission criteria to make informed decisions.</p>
+                    </Link>
                 </div>
             </div>
 
-            {/* Featured Universities Section */}
-            <FeaturedUniversities />
+            {/* New Additions Section */}
+            <NewAdditions />
 
             {/* Frequently Asked Questions Section */}
             <section className="bg-gray-100 w-full py-20 flex flex-col items-center">
@@ -94,7 +93,6 @@ const LandingPage = () => {
                         Frequently Asked Questions
                     </h2>
 
-                    {/* FAQ Items */}
                     <div className="space-y-6">
                         <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
                             <h3 className="text-lg font-semibold text-gray-900">
