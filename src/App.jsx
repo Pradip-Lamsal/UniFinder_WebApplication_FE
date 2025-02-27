@@ -1,4 +1,5 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import AddCourses from "./auth/private/addCourses";
 import AdminDashboard from "./auth/private/AdminDashboard";
 import NewAdditions from "./auth/private/NewAdditions";
 import ComprehensiveInsights from "./auth/public/ComprehensiveInsights";
@@ -24,6 +25,7 @@ function App() {
         <Route path="/university/:id" element={<UniversityDetails />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/admin/add-university" element={<NewAdditions />} />
+        <Route path="/admin/add-courses" element={<AddCourses />} />
       </Routes>
       <Footer />
     </Router>
