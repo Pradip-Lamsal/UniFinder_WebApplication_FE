@@ -1,13 +1,14 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import AdminDashboard from "./auth/private/AdminDashboard";
+import ComprehensiveInsights from "./auth/public/ComprehensiveInsights";
+import LandingPage from "./auth/public/LandingPage";
+import Login from "./auth/public/Login";
+import Register from "./auth/public/Register";
+import SmartSearch from "./auth/public/SmartSearch";
+import TopUniversities from "./auth/public/TopUniversities";
+import UniversityDetails from "./auth/public/UniversityDetails";
 import Footer from "./compontents/Footer";
 import Navbar from "./compontents/Navbar";
-import ComprehensiveInsights from "./pages/ComprehensiveInsights";
-import LandingPage from "./pages/LandingPage";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import SmartSearch from "./pages/SmartSearch";
-import TopUniversities from "./pages/TopUniversities";
-import UniversityDetails from "./pages/UniversityDetails";
 function App() {
   return (
     <Router>
@@ -20,6 +21,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/university/:id" element={<UniversityDetails />} />
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
       </Routes>
       <Footer />
     </Router>

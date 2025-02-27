@@ -39,7 +39,7 @@ const NewAdditions = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                     {universities.length > 0 ? (
                         universities.map((uni) => (
-                            <UniCard key={uni.id} university={uni} />
+                            <UniCard key={uni._id} university={uni} />
                         ))
                     ) : (
                         !loading && <p className="text-gray-600">No universities available.</p>

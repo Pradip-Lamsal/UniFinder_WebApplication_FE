@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 import { FaEnvelope, FaLock, FaUser } from "react-icons/fa";
-import { assets } from "../assets/assets";
+import { assets } from "../../assets/assets";
+;
 
 const Register = () => {
   const [formData, setFormData] = useState({

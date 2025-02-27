@@ -1,7 +1,8 @@
 import { FaChartBar, FaSearch, FaUniversity } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { assets } from "../assets/assets";
-import NewAdditions from '../compontents/NewAdditions';
+import { assets } from "../../assets/assets";
+import NewAdditions from '../../compontents/NewAdditions';
+;
 
 const LandingPage = () => {
     return (
@@ -13,17 +14,6 @@ const LandingPage = () => {
                 className="absolute inset-0 w-full h-full object-cover opacity-20"
                 style={{ objectPosition: 'center' }} 
             />
-
-            {/* Hero Section */}
-            <header className="fixed top-0 left-0 right-0 bg-transparent backdrop-blur-sm z-50 py-6">
-                <div className="container mx-auto px-8 flex justify-between items-center">
-                    <h1 className="text-3xl font-extrabold text-white">UniFinder</h1>
-                    <div className="space-x-6">
-                        <Link to="/login" className="text-white text-lg px-6 py-3 hover:bg-gray-300 hover:text-gray-800 rounded-md transition">Login</Link>
-                        <Link to="/register" className="bg-white text-gray-800 px-6 py-3 rounded-md text-lg hover:bg-gray-300 transition">Get Started</Link>
-                    </div>
-                </div>
-            </header>
 
             <main className="relative z-10 text-center mt-32 flex items-center justify-center w-full h-screen">
                 <div className="flex flex-col items-center justify-center px-6 sm:px-12 py-12 sm:py-20 text-center">
