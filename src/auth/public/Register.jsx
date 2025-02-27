@@ -35,132 +35,128 @@ const Register = () => {
   };
 
   return (
-    <div className="relative w-full h-screen flex flex-col items-center justify-center">
-      {/* Fullscreen Background Image - Scaled Up by 50% */}
-      <img
-        src={assets.background}
-        alt="Register Background"
-        className="absolute inset-0 w-full h-full object-cover scale-150"
-      />
-
-      {/* Overlay for Better Visibility */}
-      <div className="absolute inset-0 bg-black bg-opacity-10"></div>
-
-      {/* UniFinder Text at the Top Left */}
-      <div className="absolute top-8 left-8 text-3xl font-bold text-gray-600 z-10">
-        UniFinder
+    <div className="h-screen flex">
+      {/* Left Side - Image Section */}
+      <div className="w-1/2 h-full hidden md:flex items-center justify-center bg-gray-100">
+        <img src={assets.register} alt="Register Illustration" className="w-3/4 rounded-xl shadow-lg" />
       </div>
 
-      {/* Logo at the Top - Increased Size */}
-      <img
-        src={assets.loggo} // Ensure this path is correct
-        alt="Logo"
-        className="relative z-10 w-20 mb-8"
-      />
+      {/* Right Side - Register Box */}
+      <div className="w-full md:w-1/2 flex items-center justify-center bg-gray-50">
+        <div className="w-[90%] md:w-96 p-8 bg-white rounded-3xl shadow-lg">
+          {/* Logo */}
+          <div className="flex flex-col items-center mb-6">
+            <img src={assets.loggo} alt="Logo" className="w-16 mb-2" />
+            <h2 className="text-2xl font-semibold text-gray-700">Create Your Account</h2>
+          </div>
 
-      {/* Centered Register Form */}
-      <form className="relative z-4 w-96 flex flex-col items-center space-y-6" onSubmit={handleRegister}>
-        {error && <p className="text-red-500">{error}</p>}
-        {success && <p className="text-green-500">{success}</p>}
+          {/* Register Form */}
+          <form className="space-y-4" onSubmit={handleRegister}>
+            {error && <p className="text-red-500 text-center">{error}</p>}
+            {success && <p className="text-green-500 text-center">{success}</p>}
 
-        {/* First Name Input */}
-        <div className="relative w-full">
-          <FaUser className="absolute left-5 top-3 text-gray-500 text-lg" />
-          <input
-            type="text"
-            name="firstName"
-            value={formData.firstName}
-            onChange={handleChange}
-            className="w-full px-14 py-3 border rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800 bg-white shadow-md"
-            placeholder="First Name"
-            required
-          />
+            <div className="grid grid-cols-2 gap-4">
+              {/* First Name */}
+              <div className="relative">
+                <FaUser className="absolute left-5 top-4 text-gray-500 text-lg" />
+                <input
+                  type="text"
+                  name="firstName"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                  className="w-full px-12 py-3 border border-gray-300 rounded-full focus:ring-2 focus:ring-green-500 focus:outline-none"
+                  placeholder="First Name"
+                  required
+                />
+              </div>
+
+              {/* Last Name */}
+              <div className="relative">
+                <FaUser className="absolute left-5 top-4 text-gray-500 text-lg" />
+                <input
+                  type="text"
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  className="w-full px-12 py-3 border border-gray-300 rounded-full focus:ring-2 focus:ring-green-500 focus:outline-none"
+                  placeholder="Last Name"
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Username */}
+            <div className="relative">
+              <FaUser className="absolute left-5 top-4 text-gray-500 text-lg" />
+              <input
+                type="text"
+                name="username"
+                value={formData.username}
+                onChange={handleChange}
+                className="w-full px-12 py-3 border border-gray-300 rounded-full focus:ring-2 focus:ring-green-500 focus:outline-none"
+                placeholder="Username"
+                required
+              />
+            </div>
+
+            {/* Email */}
+            <div className="relative">
+              <FaEnvelope className="absolute left-5 top-4 text-gray-500 text-lg" />
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full px-12 py-3 border border-gray-300 rounded-full focus:ring-2 focus:ring-green-500 focus:outline-none"
+                placeholder="Email"
+                required
+              />
+            </div>
+
+            {/* Password */}
+            <div className="relative">
+              <FaLock className="absolute left-5 top-4 text-gray-500 text-lg" />
+              <input
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                className="w-full px-12 py-3 border border-gray-300 rounded-full focus:ring-2 focus:ring-green-500 focus:outline-none"
+                placeholder="Password"
+                required
+              />
+            </div>
+
+            {/* Confirm Password */}
+            <div className="relative">
+              <FaLock className="absolute left-5 top-4 text-gray-500 text-lg" />
+              <input
+                type="password"
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                className="w-full px-12 py-3 border border-gray-300 rounded-full focus:ring-2 focus:ring-green-500 focus:outline-none"
+                placeholder="Confirm Password"
+                required
+              />
+            </div>
+
+            {/* Register Button */}
+            <button
+              type="submit"
+              className="w-full bg-green-600 text-white py-3 rounded-full hover:bg-green-700 transition-shadow shadow-md hover:shadow-lg"
+            >
+              Register
+            </button>
+
+            {/* Bottom Links */}
+            <div className="flex justify-between text-gray-600 text-sm">
+              <span>Already have an account?</span>
+              <a href="/login" className="hover:underline text-green-600">Login</a>
+            </div>
+          </form>
         </div>
-
-        {/* Last Name Input */}
-        <div className="relative w-full">
-          <FaUser className="absolute left-5 top-3 text-gray-500 text-lg" />
-          <input
-            type="text"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-            className="w-full px-14 py-3 border rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800 bg-white shadow-md"
-            placeholder="Last Name"
-            required
-          />
-        </div>
-
-        {/* Username Input */}
-        <div className="relative w-full">
-          <FaUser className="absolute left-5 top-3 text-gray-500 text-lg" />
-          <input
-            type="text"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-            className="w-full px-14 py-3 border rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800 bg-white shadow-md"
-            placeholder="Username"
-            required
-          />
-        </div>
-
-        {/* Email Input */}
-        <div className="relative w-full">
-          <FaEnvelope className="absolute left-5 top-3 text-gray-500 text-lg" />
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="w-full px-14 py-3 border rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800 bg-white shadow-md"
-            placeholder="Email"
-            required
-          />
-        </div>
-
-        {/* Password Input */}
-        <div className="relative w-full">
-          <FaLock className="absolute left-5 top-3 text-gray-500 text-lg" />
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            className="w-full px-14 py-3 border rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800 bg-white shadow-md"
-            placeholder="Password"
-            required
-          />
-        </div>
-
-        {/* Confirm Password Input */}
-        <div className="relative w-full">
-          <FaLock className="absolute left-5 top-3 text-gray-500 text-lg" />
-          <input
-            type="password"
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            className="w-full px-14 py-3 border rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800 bg-white shadow-md"
-            placeholder="Confirm Password"
-            required
-          />
-        </div>
-
-        {/* Register Button */}
-        <button
-          type="submit"
-          className="w-full bg-gray-600 text-white py-3 rounded-full hover:bg-black transition text-lg font-semibold shadow-lg"
-        >
-          Register
-        </button>
-
-        {/* Bottom Links */}
-        <div className="flex justify-between w-full px-4 text-black text-sm">
-          <a className="text whitespace-normal">Already have an account?</a>
-          <a href="/login" className="hover:underline">Login</a>
-        </div>
-      </form>
+      </div>
     </div>
   );
 };
