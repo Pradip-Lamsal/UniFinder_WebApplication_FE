@@ -1,6 +1,8 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import AddConsultancy from "./auth/private/AddConsultancies";
 import AddCourses from "./auth/private/addCourses";
 import AdminDashboard from "./auth/private/AdminDashboard";
+import DisplayConsultancies from "./auth/private/DisplayConsultancies";
 import NewAdditions from "./auth/private/NewAdditions";
 import ComprehensiveInsights from "./auth/public/ComprehensiveInsights";
 import LandingPage from "./auth/public/LandingPage";
@@ -26,6 +28,8 @@ function App() {
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/admin/add-university" element={<NewAdditions />} />
         <Route path="/admin/add-courses" element={<AddCourses />} />
+        <Route path="/admin/add-consultancies" element={<AddConsultancy />} />
+        <Route path="/admin/display-consultancies" element={<DisplayConsultancies />} />
       </Routes>
       <Footer />
     </Router>

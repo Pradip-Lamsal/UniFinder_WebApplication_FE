@@ -20,6 +20,7 @@ const AdminDashboard = () => {
             <h2 className="text-3xl font-bold mb-4">Admin Dashboard</h2>
             <button onClick={() => navigate("/admin/add-university")} className="bg-green-600 text-white px-4 py-2 rounded">Add University</button>
             <button onClick={() => navigate("/admin/add-courses")} className="bg-green-600 text-white px-4 py-2 rounded">Add Courses</button>
+            <button onClick={() => navigate("/admin/add-consultancies")} className="bg-green-600 text-white px-4 py-2 rounded">Add Consultancies</button>
             <table className="w-full mt-4 border">
                 <thead>
                     <tr className="bg-gray-200">
