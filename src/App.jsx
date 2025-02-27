@@ -1,4 +1,5 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
 import AddConsultancy from "./auth/private/AddConsultancies";
 import AddCourses from "./auth/private/addCourses";
 import AdminDashboard from "./auth/private/AdminDashboard";
@@ -31,6 +32,7 @@ function App() {
         <Route path="/admin/add-consultancies" element={<AddConsultancy />} />
         <Route path="/admin/display-consultancies" element={<DisplayConsultancies />} />
       </Routes>
+      <ToastContainer />
       <Footer />
     </Router>
   );
