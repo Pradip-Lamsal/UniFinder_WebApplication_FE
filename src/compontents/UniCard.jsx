@@ -1,79 +1,54 @@
-const FeaturedUniversities = () => {
-    const universities = [
-        {
-            name: "Tech University",
-            location: "San Francisco, CA",
-            fee: "$25,000",
-            description: "A leading institution in technology education.",
-            type: "Public",
-        },
-        {
-            name: "Business School",
-            location: "New York, NY",
-            fee: "$35,000",
-            description: "Premier business education and research.",
-            type: "Private",
-        },
-        {
-            name: "Arts Academy",
-            location: "Los Angeles, CA",
-            fee: "$28,000",
-            description: "Creative arts and design excellence.",
-            type: "Private",
-        },
-    ];
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { assets } from '../assets/assets';
 
+const UniCard = ({ university }) => {
     return (
-        <section className="bg-blue-100 w-full py-20 flex flex-col items-center justify-center">
-            <div className="max-w-7xl w-full px-6">
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-center text-gray-900 mb-8">
-                    Featured Universities
-                </h2>
+        <div className="relative bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-transform hover:-translate-y-1">
+            {/* University Image */}
+            <img 
+                src={assets.uni1} 
+                alt={university.name} 
+                className="w-full h-40 object-cover rounded-md"
+            />
 
-                {/* Horizontal Scrollable Row */}
-                <div className="flex flex-row gap-10 overflow-x-auto px-4 py-4 scrollbar-hide">
-                    {universities.map((university, index) => (
-                        <div
-                            key={index}
-                            className="bg-white p-10 w-96 flex-shrink-0 rounded-lg shadow-lg text-center transition-all hover:shadow-xl"
-                        >
-                            <h3 className="text-xl font-semibold text-gray-900">
-                                {university.name}
-                            </h3>
-                            <p className="text-gray-600 mt-3 flex items-center">
-                                📍 {university.location}
-                            </p>
-                            <p className="text-gray-600 flex items-center mt-1">
-                                💰 Annual Fee: {university.fee}
-                            </p>
-                            <p className="text-gray-700 mt-3">{university.description}</p>
-                            <a
-                                href="#"
-                                className="mt-4 inline-flex items-center text-blue-600 font-medium hover:underline"
-                            >
-                                View Details →
-                            </a>
-                            <span
-                                className={`absolute top-4 right-4 px-3 py-1 text-sm font-semibold rounded-full ${
-                                    university.type === "Public"
-                                        ? "bg-blue-200 text-blue-800"
-                                        : "bg-gray-700 text-white"
-                                }`}
-                            >
-                                {university.type}
-                            </span>
-                        </div>
-                    ))}
-                </div>
+            {/* University Details */}
+            <h3 className="text-lg font-semibold mt-4">{university.name}</h3>
+            <p className="text-gray-600">📍 {university.location}</p>
+            <p className="text-gray-600">💰 {university.fee}</p>
+            <p className="text-gray-700 mt-3">{university.description}</p>
 
-                <div className="mt-12 text-center">
-                    <button className="bg-white px-6 py-3 rounded-lg shadow-md text-gray-800 font-medium hover:bg-gray-200 transition">
-                        View All Universities →
-                    </button>
-                </div>
-            </div>
-        </section>
+            {/* View Details Link */}
+            <Link 
+                to={`/university/${university.id}`} 
+                className="block mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-700 transition text-center"
+            >
+                View Details
+            </Link>
+
+            {/* University Type Badge */}
+            <span
+                className={`absolute top-4 right-4 px-3 py-1 text-sm font-semibold rounded-full ${
+                    university.type === "Public" ? "bg-blue-200 text-blue-800" : "bg-gray-700 text-white"
+                }`}
+            >
+                {university.type}
+            </span>
+        </div>
     );
 };
 
-export default FeaturedUniversities;
+// ✅ Add PropTypes for validation
+UniCard.propTypes = {
+    university: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        location: PropTypes.string.isRequired,
+        fee: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+        type: PropTypes.string.isRequired,
+        img: PropTypes.string.isRequired,
+    }).isRequired,
+};
+
+export default UniCard;
