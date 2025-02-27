@@ -7,7 +7,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import SmartSearch from "./pages/SmartSearch";
 import TopUniversities from "./pages/TopUniversities";
-
+import UniversityDetails from "./pages/UniversityDetails";
 function App() {
   return (
     <Router>
@@ -19,6 +19,7 @@ function App() {
         <Route path="/comprehensive-insights" element={<ComprehensiveInsights />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/university/:id" element={<UniversityDetails />} />
       </Routes>
       <Footer />
     </Router>
