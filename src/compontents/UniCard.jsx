@@ -1,34 +1,26 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { assets } from '../assets/assets';
 
 const UniCard = ({ university }) => {
     return (
-        <div className="relative bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-transform hover:-translate-y-1">
-            {/* University Image */}
-            <img 
-                src={assets.uni1} 
-                alt={university.name} 
-                className="w-full h-40 object-cover rounded-md"
-            />
-
+        <div className="relative bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-transform hover:-translate-y-2 border border-gray-200">
             {/* University Details */}
-            <h3 className="text-lg font-semibold mt-4">{university.name}</h3>
-            <p className="text-gray-600">📍 {university.location}</p>
-            <p className="text-gray-600">💰 {university.fee}</p>
-            <p className="text-gray-700 mt-3">{university.description}</p>
+            <h3 className="text-2xl font-bold mt-2 text-gray-900">{university.name}</h3>
+            <p className="text-gray-600 mt-1 font-medium">📍 {university.location}</p>
+            <p className="text-gray-600 mt-1 font-medium">💰 Tuition: {university.fee}</p>
+            <p className="text-gray-700 mt-4 text-sm leading-relaxed">📝 {university.description}</p>
 
             {/* View Details Link */}
             <Link 
                 to={`/university/${university.id}`} 
-                className="block mt-4 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-700 transition text-center"
+                className="block mt-6 bg-blue-600 text-white px-5 py-2.5 rounded-lg shadow-md hover:bg-blue-700 transition text-center font-semibold"
             >
                 View Details
             </Link>
 
             {/* University Type Badge */}
             <span
-                className={`absolute top-4 right-4 px-3 py-1 text-sm font-semibold rounded-full ${
+                className={`absolute top-4 right-4 px-4 py-1 text-sm font-semibold rounded-full shadow-md ${
                     university.type === "Public" ? "bg-blue-200 text-blue-800" : "bg-gray-700 text-white"
                 }`}
             >
@@ -47,7 +39,6 @@ UniCard.propTypes = {
         fee: PropTypes.string.isRequired,
         description: PropTypes.string.isRequired,
         type: PropTypes.string.isRequired,
-        img: PropTypes.string.isRequired,
     }).isRequired,
 };
 
