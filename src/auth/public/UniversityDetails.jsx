@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import universityImg from '../../assets/university.png'; // Correct import path
 
 const UniversityDetails = () => {
     const { id } = useParams();
@@ -10,13 +11,12 @@ const UniversityDetails = () => {
         ranking: "#15 in Technology",
         location: "San Francisco, CA",
         tuition: "$25,000 per year",
-        website: "https://www.techuniversity.edu",
         description: "A leading institution in technology education, offering world-class research and innovation opportunities.",
-        img: "/images/tech-university.jpg",
+        img: universityImg, // Use imported image
     };
 
     return (
-        <div className="min-h-screen flex flex-col items-center bg-gray-100 py-10 px-4">
+        <div className="min-h-screen flex flex-col items-center bg-gray-100 pt-24 py-10 px-4"> {/* Added top padding */}
             <div className="max-w-4xl w-full bg-white rounded-lg shadow-lg overflow-hidden">
                 {/* Cover Image */}
                 <img src={university.img} alt={university.name} className="w-full h-64 object-cover" />
