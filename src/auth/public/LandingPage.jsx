@@ -1,128 +1,188 @@
-import { useRef } from "react";
-import { FaChartBar, FaSearch, FaUniversity } from 'react-icons/fa';
-import { Link } from "react-router-dom";
-import { assets } from "../../assets/assets";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import {
+    FaBookReader,
+    FaFilter,
+    FaSearch,
+    FaUniversity,
+    FaWarehouse
+} from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import NavbarWrapper from "../../compontents/Navbar";
+import UniCard from "../../compontents/UniCard";
 
 const LandingPage = () => {
-    const faqSectionRef = useRef(null);
+  const [universities, setUniversities] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [filteredUniversities, setFilteredUniversities] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
 
-    const handleScroll = () => {
-        faqSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+  useEffect(() => {
+    const fetchUniversities = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5001/api/universities"
+        );
+        setUniversities(response.data);
+        setFilteredUniversities(response.data);
+        setLoading(false);
+        // eslint-disable-next-line no-unused-vars
+      } catch (err) {
+        setError("Failed to fetch universities.");
+        setLoading(false);
+      }
     };
+    fetchUniversities();
+  }, []);
 
-    return (
-        <div className="relative min-h-screen bg-gradient-to-b from-gray-100 via-gray-200 to-white flex flex-col items-center">
+//   const handleSearch = () => {
+//     if (!searchQuery) {
+//       setFilteredUniversities(universities);
+//       return;
+//     }
+//     const filtered = universities.filter((uni) =>
+//       uni.name.toLowerCase().includes(searchQuery.toLowerCase())
+//     );
+//     setFilteredUniversities(filtered);
+//   };
 
-            {/* Background Image */}
-            <div className="absolute inset-0 bg-[url('/path-to-pattern.png')] opacity-10"></div>
-            <img 
-                src={assets.backgroundImage} 
-                alt="Background" 
-                className="absolute inset-0 w-full h-full object-cover opacity-20"
-                style={{ objectPosition: 'center' }} 
-            />
-
-            {/* Hero Section */}
-            <main className="relative z-10 text-center mt-32 flex items-center justify-center w-full h-screen px-6 sm:px-12 py-12 sm:py-20 text-center">
-                <div className="flex flex-col items-center justify-center text-center max-w-5xl mx-auto">
-                    <h1 className="text-5xl sm:text-6xl font-extrabold text-gray-800 mb-6 transition-all transform hover:scale-105">
-                        Find Your Perfect University
-                    </h1>
-                    <p className="text-xl sm:text-2xl text-gray-600 mb-8 max-w-4xl transition-all transform hover:scale-105">
-                        Connect with top universities and expert consultancies to make your educational journey a success.
-                    </p>
-                    <button 
-                        onClick={handleScroll} 
-                        className="bg-blue-600 text-white px-8 py-4 rounded-lg text-xl sm:text-2xl hover:bg-blue-700 transition"
-                    >
-                        Start Your Journey
-                    </button>
-                </div>
-            </main>
-
-            {/* Why Choose UniFinder Section */}
-            <div className="bg-gray-100 py-12 w-full mt-20">
-                <h2 className="text-center text-xl sm:text-2xl font-extrabold text-gray-800 mb-6">
-                    Why Choose UniFinder?
-                </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-8">
-                    {/* Smart Search */}
-                    <Link 
-                        to="/smart-search"
-                        className="group block bg-white p-8 rounded-lg shadow-xl text-center hover:shadow-2xl transition transform hover:-translate-y-1 hover:scale-105"
-                    >
-                        <div className="mb-6 text-gray-500 flex justify-center group-hover:text-gray-800 transition">
-                            <FaSearch size={56} />
-                        </div>
-                        <h3 className="text-lg font-semibold mb-3">Smart Search</h3>
-                        <p className="text-gray-600">Find universities that match your preferences using our advanced filters.</p>
-                    </Link>
-                    
-                    {/* Top Universities */}
-                    <Link 
-                        to="/top-universities"
-                        className="group block bg-white p-8 rounded-lg shadow-xl text-center hover:shadow-2xl transition transform hover:-translate-y-1 hover:scale-105"
-                    >
-                        <div className="mb-6 text-gray-500 flex justify-center group-hover:text-gray-800 transition">
-                            <FaUniversity size={56} />
-                        </div>
-                        <h3 className="text-lg font-semibold mb-3">Top Universities</h3>
-                        <p className="text-gray-600">Access detailed information about leading institutions worldwide.</p>
-                    </Link>
-
-                    {/* Comprehensive Insights */}
-                    <Link 
-                        to="/comprehensive-insights"
-                        className="group block bg-white p-8 rounded-lg shadow-xl text-center hover:shadow-2xl transition transform hover:-translate-y-1 hover:scale-105"
-                    >
-                        <div className="mb-6 text-gray-500 flex justify-center group-hover:text-gray-800 transition">
-                            <FaChartBar size={56} />
-                        </div>
-                        <h3 className="text-lg font-semibold mb-3">Comprehensive Insights</h3>
-                        <p className="text-gray-600">Get rankings, reviews, and admission criteria to make informed decisions.</p>
-                    </Link>
-                </div>
+  return (
+    <div className="w-full min-h-screen bg-gray-50 text-black">
+      <NavbarWrapper />
+      <div className="pt-32 px-6 sm:px-12">
+        {/* Hero Section */}
+        <header className="text-center py-16">
+          <h1 className="text-6xl font-extrabold leading-tight text-gray-900">
+            Find Your <span className="text-blue-600">Perfect University</span>{" "}
+            Abroad
+          </h1>
+          <p className="text-xl text-gray-600 mt-6 max-w-3xl mx-auto">
+            Explore global education opportunities tailored to your aspirations
+            with real-time updates and expert insights.
+          </p>
+          <div className="mt-10 flex justify-center">
+            <div className="relative w-full max-w-3xl bg-white shadow-md rounded-full p-4 flex items-center">
+              <FaSearch className="text-gray-500 ml-4" />
+              <input
+                type="text"
+                placeholder="Search for universities..."
+                className="w-full px-4 py-2 text-gray-700 focus:outline-none"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <button
+                onClick={() => navigate("/smart-search")} 
+                className="bg-gray-800 text-white px-6 py-2 rounded-full hover:bg-gray-900 transition flex items-center"
+              >
+                <FaFilter className="mr-2" /> Go TO Search
+              </button>
             </div>
+          </div>
+          <div className="flex justify-center mt-8 space-x-4">
+          <button
+              className="border px-6 py-4 rounded-lg flex items-center bg-gray-100 hover:bg-gray-200 shadow-md text-lg"
+              onClick={() => navigate("/display-courses")} // Redirect on click
+            >
+              <FaBookReader className="mr-2" /> Courses
+            </button>
+            <button
+              className="border px-6 py-4 rounded-lg flex items-center bg-gray-100 hover:bg-gray-200 shadow-md text-lg"
+              onClick={() => navigate("/fetch-all-universities")} // Redirect on click
+            >
+              <FaUniversity className="mr-2" /> University
+            </button>
+            <button
+              className="border px-6 py-4 rounded-lg flex items-center bg-gray-100 hover:bg-gray-200 shadow-md text-lg"
+              onClick={() => navigate("/display-consultancies")} // Redirect on click
+            >
+              <FaWarehouse className="mr-2" /> Consultancy
+            </button>
+          </div>
+        </header>
 
-            {/* Frequently Asked Questions Section */}
-            <section ref={faqSectionRef} className="bg-gray-100 w-full py-20 flex flex-col items-center">
-                <div className="max-w-5xl w-full px-6">
-                    <h2 className="text-2xl sm:text-3xl font-extrabold text-center text-gray-900 mb-8">
-                        Frequently Asked Questions
-                    </h2>
+        {/* Featured Universities */}
+        <section className="px-8 py-16">
+          <h2 className="text-5xl font-bold text-center text-gray-800">
+            New Additions
+          </h2>
+          <div className="w-full max-w-5xl bg-white shadow-lg rounded-lg p-6 mx-auto mt-10">
+            {loading && (
+              <p className="text-gray-600 text-center text-lg">
+                Loading universities...
+              </p>
+            )}
+            {error && (
+              <p className="text-red-500 text-center text-lg">{error}</p>
+            )}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+              {filteredUniversities.length > 0
+                ? filteredUniversities.map((uni) => (
+                    <UniCard key={uni._id} university={uni} />
+                  ))
+                : !loading && (
+                    <p className="text-gray-600 text-center">
+                      No universities found.
+                    </p>
+                  )}
+            </div>
+          </div>
+        </section>
 
-                    <div className="space-y-6">
-                        <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
-                            <h3 className="text-lg font-semibold text-gray-900">
-                                How does UniFinder help students?
-                            </h3>
-                            <p className="text-gray-600 mt-2">
-                                UniFinder simplifies the university search process by providing detailed information about institutions, connecting you with consultants, and offering application support.
-                            </p>
-                        </div>
-
-                        <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
-                            <h3 className="text-lg font-semibold text-gray-900">
-                                What types of universities are listed?
-                            </h3>
-                            <p className="text-gray-600 mt-2">
-                                We list both public and private universities across different locations, with comprehensive information about fees, programs, and admission requirements.
-                            </p>
-                        </div>
-
-                        <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
-                            <h3 className="text-lg font-semibold text-gray-900">
-                                Is UniFinder free to use?
-                            </h3>
-                            <p className="text-gray-600 mt-2">
-                                Yes! UniFinder is free for students to explore and compare universities. Additional premium services, such as personalized consultations, may be available at a cost.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-    );
+        {/* College Ranking */}
+        <section className="px-8 py-16">
+          <h2 className="text-5xl font-bold text-center text-gray-800">
+            College Ranking 2024
+          </h2>
+          <div className="w-full max-w-6xl bg-white shadow-xl rounded-lg p-8 mx-auto mt-10">
+            {loading && (
+              <p className="text-gray-600 text-center text-lg">
+                Loading universities...
+              </p>
+            )}
+            {error && (
+              <p className="text-red-500 text-center text-lg">{error}</p>
+            )}
+            <table className="w-full text-left border-collapse text-lg">
+              <thead>
+                <tr className="border-b bg-gray-100">
+                  <th className="p-4 text-gray-800">Ranking</th>
+                  <th className="p-4 text-gray-800">University</th>
+                  <th className="p-4 text-gray-800">Locaton</th>
+                </tr>
+              </thead>
+              <tbody>
+                {universities.length > 0
+                  ? universities.map((uni) => (
+                      <tr
+                        key={uni._id}
+                        className="border-b hover:bg-gray-200 transition"
+                      >
+                        <td className="p-4 font-semibold">{uni.ranking}</td>
+                        <td className="p-4 font-bold text-gray-900">
+                          {uni.name}
+                        </td>
+                        <td className="p-4 text-gray-700">{uni.location}</td>
+                      </tr>
+                    ))
+                  : !loading && (
+                      <tr>
+                        <td
+                          colSpan="3"
+                          className="text-center p-6 text-lg text-gray-600"
+                        >
+                          No universities available.
+                        </td>
+                      </tr>
+                    )}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </div>
+  );
 };
 
 export default LandingPage;
