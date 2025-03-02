@@ -21,11 +21,11 @@ const SmartSearch = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center py-12">
-      <h1 className="text-4xl font-extrabold text-gray-800 mb-8">Smart Search</h1>
+    <div className="min-h-screen bg-gray-50 flex flex-col items-center py-20 px-6 sm:px-12 lg:px-16"> {/* Added spacing */}
+      <h1 className="text-5xl font-extrabold text-gray-800 mb-10">Smart Search</h1>
 
       {/* Search Bar */}
-      <div className="flex w-full max-w-3xl bg-white shadow-md rounded-full p-4 mb-6">
+      <div className="flex w-full max-w-3xl bg-white shadow-lg rounded-full p-4 mb-8 border border-gray-300">
         <FaSearch className="text-gray-500 ml-4 mt-1" />
         <input
           type="text"
@@ -36,18 +36,20 @@ const SmartSearch = () => {
         />
         <button 
           onClick={handleSearch} 
-          className="bg-gray-800 text-white px-6 py-2 rounded-full hover:bg-gray-900 transition">
+          className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition flex items-center space-x-2"
+        >
           <FaFilter />
+          <span className="ml-2">Filter</span>
         </button>
       </div>
 
       {/* Search Results */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 w-full max-w-6xl">
         {results.map((uni, index) => (
-          <div key={index} className="bg-white shadow-lg rounded-lg p-6 text-center hover:scale-105 transition">
-            <h2 className="text-xl font-semibold text-gray-800">{uni.name}</h2>
-            <p className="text-gray-500">{uni.location}</p>
-            <p className="text-gray-700 font-bold">Ranking: #{uni.ranking}</p>
+          <div key={index} className="bg-white shadow-xl rounded-lg p-6 text-center hover:scale-105 transition transform border border-gray-200">
+            <h2 className="text-2xl font-bold text-gray-900">{uni.name}</h2>
+            <p className="text-gray-600 mt-1 font-medium">📍 {uni.location}</p>
+            <p className="text-gray-800 font-bold mt-2">🏆 Ranking: #{uni.ranking}</p>
           </div>
         ))}
       </div>
