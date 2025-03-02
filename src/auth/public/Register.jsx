@@ -152,7 +152,7 @@ const Register = () => {
             {/* Bottom Links */}
             <div className="flex justify-between text-gray-600 text-sm">
               <span>Already have an account?</span>
-              <a href="/login" className="hover:underline text-green-600">Login</a>
+              <a href="/" className="hover:underline text-green-600">Login</a>
             </div>
           </form>
         </div>
