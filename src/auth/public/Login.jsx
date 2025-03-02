@@ -14,8 +14,14 @@ const Login = () => {
 
     try {
       const res = await axios.post("http://localhost:5001/api/auth/login", { username, password }, { withCredentials: true });
+      
       alert(res.data.message);
-      window.location.href = "/"; // Redirect after login
+
+      if (res.data.isAdmin) {
+        window.location.href = "http://localhost:5173/admin/dashboard"; // Redirect admin to dashboard
+      } else {
+        window.location.href = "/"; // Redirect normal user to home
+      }
     } catch (err) {
       setError(err.response?.data?.error || "Login failed");
     }
