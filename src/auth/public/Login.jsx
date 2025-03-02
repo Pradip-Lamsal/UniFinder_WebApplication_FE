@@ -20,7 +20,7 @@ const Login = () => {
       if (res.data.isAdmin) {
         window.location.href = "http://localhost:5173/admin/dashboard"; // Redirect admin to dashboard
       } else {
-        window.location.href = "/"; // Redirect normal user to home
+        window.location.href = "/landing-page"; // Redirect normal user to home
       }
     } catch (err) {
       setError(err.response?.data?.error || "Login failed");
