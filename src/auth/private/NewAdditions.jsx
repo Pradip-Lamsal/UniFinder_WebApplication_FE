@@ -9,6 +9,7 @@ const NewAdditions = () => {
     location: "",
     tuition: "",
     description: "",
+    ranking:"",
     // img: "",  // Uncomment if you want to include an image URL field
   });
 
@@ -33,7 +34,7 @@ const NewAdditions = () => {
         location: "",
         tuition: "",
         description: "",
-        // img: "",
+        ranking: "",
       });
 
       // Optional: If you want to redirect to the universities list page
@@ -83,6 +84,14 @@ const NewAdditions = () => {
             onChange={handleInputChange}
             className="w-full p-3 mb-4 border rounded-lg"
             placeholder="Tuition"
+            required
+          />
+                    <textarea
+            name="ranking"
+            value={newUniversity.ranking}
+            onChange={handleInputChange}
+            className="w-full p-3 mb-4 border rounded-lg"
+            placeholder="Ranking"
             required
           />
           <textarea
